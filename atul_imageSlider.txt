@@ -1,0 +1,498 @@
+//css file 
+
+<style type="text/css">
+        body {
+	margin: 0;
+	padding: 0;
+}
+.slider-wrap {
+	position: relative;
+	margin: 0px auto;
+	width: 100%;
+	background: #888;
+	float: left;
+	height: 340px;
+}
+.slider {
+	position: relative;
+	width: 96%;
+	margin: auto;
+	padding: 20px 0px;
+}
+ul {
+	margin: 0;
+	padding: 0;
+}
+ul li {
+	list-style: none;
+	text-align: center;
+}
+ul li img {
+	display: inline-block;
+	vertical-align: middle;
+	width: 250px;
+	height: 250px;
+	background: black;
+	border: 1px solid #fff;
+}
+.slider-arrow {
+	position: absolute;
+	top: 40%;
+	width: 35px;
+	height: 35px;
+	background: black;
+	color: #fff;
+	text-align: center;
+	text-decoration: none;
+	/*border-radius: 100%;*/
+	padding-top: 20px;
+	font-weight: bold;
+<br>
+}
+.sa-left {
+	left: 10px;
+}
+.sa-right {
+	right: 10px;
+}
+/* light box jquery starts*/
+
+.lb-album {
+	width: 100%;
+	margin: 0 auto;
+}
+.lb-album li {
+	float: left;
+	margin: 5px;
+	position: relative;
+}
+.lb-album li > a, .lb-album li > a img {
+	display: block;
+}
+.lb-album li > a {
+	width: 250px;
+	height: 250px;
+	position: relative;
+	padding: 10px;
+	background: #f1d2c2;
+	-webkit-box-shadow: 1px 1px 2px #fff, 1px 1px 2px rgba(158,111,86,0.3) inset;
+	-moz-box-shadow: 1px 1px 2px #fff, 1px 1px 2px rgba(158,111,86,0.3) inset;
+	box-shadow: 1px 1px 2px #fff, 1px 1px 2px rgba(158,111,86,0.3) inset;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px 4px 4px 4px;
+}
+.lb-album li > a span {
+	position: absolute;
+	width: 250px;
+	height: 250px;
+	top: 10px;
+	left: 10px;
+	text-align: center;
+	line-height: 150px;
+	color: #fff;
+	/*text-shadow: 0px 1px 1px rgba(255,255,255,0.6);*/
+	font-size: 24px;
+	opacity: 0;
+	filter: alpha(opacity=0); /* internet explorer */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=0)"; /*IE8*/
+	background: rgba(15,21,16);
+	background: -moz-radial-gradient(center, ellipse cover, rgba(255,255,255,0.56) 0%, rgba(15,21,16,1) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(255,255,255,0.56)), color-stop(100%, rgba(15,21,16,1)));
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,0.56) 0%, rgba(15,21,16,1) 100%);
+	background: -o-radial-gradient(center, ellipse cover, rgba(255,255,255,0.56) 0%, rgba(15,21,16,1) 100%);
+	background: -ms-radial-gradient(center, ellipse cover, rgba(255,255,255,0.56) 0%, rgba(15,21,16,1) 100%);
+	background: radial-gradient(center, ellipse cover, rgba(255,255,255,0.56) 0%, rgba(15,21,16,1) 100%);
+	-webkit-transition: opacity 0.3s linear;
+	-moz-transition: opacity 0.3s linear;
+	-o-transition: opacity 0.3s linear;
+	-ms-transition: opacity 0.3s linear;
+	transition: opacity 0.3s linear;
+}
+.lb-album li > a:hover span {
+	opacity: 1;
+	filter: alpha(opacity=99); /* internet explorer */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=99)"; /*IE8*/
+}
+.lb-overlay {
+	width: 0px;
+	height: 0px;
+	position: fixed;
+	overflow: hidden;
+	left: 0px;
+	top: 0px;
+	padding: 0px;
+	z-index: 99;
+	text-align: center;
+	background: rgb(15,21,16);
+	background: -moz-radial-gradient(center, ellipse cover, rgba(255,255,255,0.56) 0%, rgba(15,21,16,1) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(255,255,255,0.56)), color-stop(100%, rgba(15,21,16,1)));
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,0.56) 0%, rgba(15,21,16,1) 100%);
+	background: -o-radial-gradient(center, ellipse cover, rgba(255,255,255,0.56) 0%, rgba(15,21,16,1) 100%);
+	background: -ms-radial-gradient(center, ellipse cover, rgba(255,255,255,0.56) 0%, rgba(15,21,16,1) 100%);
+	background: radial-gradient(center, ellipse cover, rgba(255,255,255,0.56) 0%, rgba(15,21,16,1) 100%);
+}
+.lb-overlay > div {
+	position: relative;
+	color: rgba(27,54,81,0.8);
+	opacity: 0;
+	filter: alpha(opacity=0); /* internet explorer */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=0)"; /*IE8*/
+	width: 550px;
+	margin: 10px auto 0px auto;
+	/*text-shadow: 0px 1px 1px rgba(255,255,255,0.6);*/
+	-webkit-transition: opacity 0.3s linear 1.3s;
+	-moz-transition: opacity 0.3s linear 1.3s;
+	-o-transition: opacity 0.3s linear 1.3s;
+	-ms-transition: opacity 0.3s linear 1.3s;
+	transition: opacity 0.3s linear 1.3s;
+}
+.lb-overlay div h3, .lb-overlay div p {
+	padding: 0px 20px;
+	width: 200px;
+	height: 60px;
+	color:#fff;
+}
+.lb-overlay div h3 {
+	font-size: 36px;
+	float: left;
+	text-align: right;
+	border-right: 1px solid #fff;
+	color:#fff;
+}
+.lb-overlay div h3 span, .lb-overlay div p {
+	font-size: 16px;
+	font-style: italic;
+	color:#fff;
+}
+.lb-overlay div h3 span {
+	display: block;
+	line-height: 6px;
+}
+.lb-overlay div p {
+	text-align: left;
+	float: left;
+	width: 260px;
+}
+.lb-overlay a.lb-close {
+	background: rgba(15,16,21,0.8);
+	z-index: 1001;
+	color: #fff;
+	position: absolute;
+	top:20px;
+	left: 50%;
+	padding:10px;
+	font-size:30px;
+	line-height: 26px;
+	text-align: center;
+	width:100px;
+	height: 23px;
+	overflow: hidden;
+	margin-left: -25px;
+	opacity: 0;
+	filter: alpha(opacity=0); /* internet 
+        explorer */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=0)"; /*IE8*/
+	-webkit-box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+	-webkit-transition: opacity 0.3s linear 1.2s;
+	-moz-transition: opacity 0.3s linear 1.2s;
+	-o-transition: opacity 0.3s linear 1.2s;
+	-ms-transition: opacity 0.3s linear 1.2s;
+	transition: opacity 0.3s linear 1.2s;
+}
+.lb-overlay img {
+	/* height: 100%; For Opera max-height does not seem to work */
+	max-height: 100%;
+	max-width: 100%;
+	position: relative;
+	-webkit-box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+	-moz-box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+	box-shadow: 0px 2px 7px rgba(0,0,0,0.2);
+	width: auto;
+	height: auto;
+}
+.lb-overlay:target {
+	width: auto;
+	height: auto;
+	bottom: 0px;
+	right: 0px;
+	padding: 80px 100px 120px 100px;
+}
+.lb-overlay:target img {
+	-webkit-animation: fadeInScale 1.2s ease-in-out;
+	-moz-animation: fadeInScale 1.2s ease-in-out;
+	-o-animation: fadeInScale 1.2s ease-in-out;
+	-ms-animation: fadeInScale 1.2s ease-in-out;
+	animation: fadeInScale 1.2s ease-in-out;
+}
+.lb-overlay:target a.lb-close, .lb-overlay:target > div {
+	opacity: 1;
+	filter: alpha(opacity=99); /* internet explorer */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=99)"; /*IE8*/
+}
+
+
+    
+        </style>
+
+
+
+
+
+
+
+=====================================================================================
+// html ke ander html code
+
+
+<div class="slider-wrap">
+    <div class="slider">
+        <ul class="lb-album">
+            <li>
+                <a href="#image-1"> <img src="https://i.ytimg.com/vi/0Dmkd--6oi8/maxresdefault.jpg" alt="image01"> <span>Pointe</span> </a>
+                <div class="lb-overlay" id="image-1">
+                    <a href="#page" class="lb-close">x Close</a> <img src="https://i.ytimg.com/vi/0Dmkd--6oi8/maxresdefault.jpg" alt="image01" />
+                    <div>
+                        <h3>pointe <span>/point/</span></h3>
+                        <p>Dance performed on the tips of the toes</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="#image-2"> <img src="https://1.bp.blogspot.com/-4-hoPT9CSOI/USJbd4v_yeI/AAAAAAAADQY/PWBnH_zuIy0/s1600/Dhriti+Saharan+actress+close+up+view+glamour+punjabi+actress.jpg" alt="image02"> <span>Pointe</span> </a>
+                <div class="lb-overlay" id="image-2">
+                    <a href="#page" class="lb-close">x Close</a> <img src="https://1.bp.blogspot.com/-4-hoPT9CSOI/USJbd4v_yeI/AAAAAAAADQY/PWBnH_zuIy0/s1600/Dhriti+Saharan+actress+close+up+view+glamour+punjabi+actress.jpg" alt="image01" />
+                    <div>
+                        <h3>pointe <span>/point/</span></h3>
+                        <p>Dance performed on the tips of the toes</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="#image-3"> <img src="http://top10for.com/wp-content/uploads/2014/06/most-beautiful-Hollywood-actress-2015.jpg" alt="image01"> <span>Pointe</span> </a>
+                <div class="lb-overlay" id="image-3">
+                    <a href="#page" class="lb-close">x Close</a> <img src="http://top10for.com/wp-content/uploads/2014/06/most-beautiful-Hollywood-actress-2015.jpg" alt="image03" />
+                    <div>
+                        <h3>Megan <span>Fox</span></h3>
+                        <p>Dance performed on the tips of the toes</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="#image-4"> <img src="http://www.smarttechtoday.com/wp-content/uploads/2015/01/Top-10-Actresses-Of-Bollywood-In-2014.jpg" alt="image04"> <span>Pointe</span> </a>
+                <div class="lb-overlay" id="image-4">
+                    <a href="#page" class="lb-close">x Close</a> <img src="http://www.smarttechtoday.com/wp-content/uploads/2015/01/Top-10-Actresses-Of-Bollywood-In-2014.jpg" alt="image04" />
+                    <div>
+                        <h3>Parineeti atul <span>Chopra rawat</span></h3>
+                        <p>Dance performed on the tips of the toes</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="#image-5"> <img src="http://topnews2015.com/wp-content/uploads/2015/04/Deepika-Padukone-richest-bollywood-actress-2015-2016-e1429090716461.jpg" alt="image05"> <span>Deepika Padukone</span> </a>
+                <div class="lb-overlay" id="image-5">
+                    <a href="#page" class="lb-close">x Close</a> <img src="http://topnews2015.com/wp-content/uploads/2015/04/Deepika-Padukone-richest-bollywood-actress-2015-2016-e1429090716461.jpg" alt="image01" />
+                    <div>
+                        <h3>Deepika <span>Padukone </span></h3>
+                        <p>Dance performed on the tips of the toes</p>
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <a href="#image-6"> <img src="https://i.ytimg.com/vi/0Dmkd--6oi8/maxresdefault.jpg" alt="image01"> <span>Pointe</span> </a>
+                <div class="lb-overlay" id="image-6">
+                    <a href="#page" class="lb-close">x Close</a> <img src="https://i.ytimg.com/vi/0Dmkd--6oi8/maxresdefault.jpg" alt="image06" />
+                    <div>
+                        <h3>pointe <span>/point/</span></h3>
+                        <p>Dance performed on the tips of the toes</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="#image-7"> <img src="https://1.bp.blogspot.com/-4-hoPT9CSOI/USJbd4v_yeI/AAAAAAAADQY/PWBnH_zuIy0/s1600/Dhriti+Saharan+actress+close+up+view+glamour+punjabi+actress.jpg" alt="image07"> <span>Pointe</span> </a>
+                <div class="lb-overlay" id="image-7">
+                    <a href="#page" class="lb-close">x Close</a> <img src="https://1.bp.blogspot.com/-4-hoPT9CSOI/USJbd4v_yeI/AAAAAAAADQY/PWBnH_zuIy0/s1600/Dhriti+Saharan+actress+close+up+view+glamour+punjabi+actress.jpg" alt="image07" />
+                    <div>
+                        <h3>pointe <span>/point/</span></h3>
+                        <p>Dance performed on the tips of the toes</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="#image-8"> <img src="http://top10for.com/wp-content/uploads/2014/06/most-beautiful-Hollywood-actress-2015.jpg" alt="image01"> <span>Pointe</span> </a>
+                <div class="lb-overlay" id="image-8">
+                    <a href="#page" class="lb-close">x Close</a> <img src="http://top10for.com/wp-content/uploads/2014/06/most-beautiful-Hollywood-actress-2015.jpg" alt="image03" />
+                    <div>
+                        <h3>Megan <span>Fox</span></h3>
+                        <p>Dance performed on the tips of the toes</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="#image-9"> <img src="http://www.smarttechtoday.com/wp-content/uploads/2015/01/Top-10-Actresses-Of-Bollywood-In-2014.jpg" alt="image04"> <span>Pointe</span> </a>
+                <div class="lb-overlay" id="image-9">
+                    <a href="#page" class="lb-close">x Close</a> <img src="http://www.smarttechtoday.com/wp-content/uploads/2015/01/Top-10-Actresses-Of-Bollywood-In-2014.jpg" alt="image04" />
+                    <div>
+                        <h3>Parineeti rawat <span>Chopra atul</span></h3>
+                        <p>Dance performed on the tips of the toes</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="#image-10"> <img src="http://topnews2015.com/wp-content/uploads/2015/04/Deepika-Padukone-richest-bollywood-actress-2015-2016-e1429090716461.jpg" </a>
+                <div class="lb-overlay" id="image-5">
+                    <a href="#page" class="lb-close">x Close</a> <img src="http://topnews2015.com/wp-content/uploads/2015/04/Deepika-Padukone-richest-bollywood-actress-2015-2016-e1429090716461.jpg" alt="image01" />
+                    <div>
+                        <h3>Deepika ankit <span>Padukone battry</span></h3>
+                        <p>Dance performed on the tips of the toes</p>
+                    </div>
+                </div>
+            </li>
+
+
+        </ul>
+    </div>
+    <a href="#" class="slider-arrow sa-left">&lt;</a> <a href="#" class="slider-arrow sa-right">&gt;</a>
+</div>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="js/jquery.lbslider.js"></script>
+
+=====================================================================================================================================================
+
+
+ 
+
+
+
+<script type="text/javascript">// image slider ke liye java sript 
+    // start lbslider here//
+
+    (function ($) {
+        $.fn.lbSlider = function (options) {
+            var options = $.extend({
+                leftBtn: '.leftBtn',
+                rightBtn: '.rightBtn',
+                visible: 4,
+                autoPlay: true,  // true or false
+                autoPlayDelay: 2,  // delay in seconds
+                autoPlayDirection: 'right-to-left'  //autoplay direction
+            }, options);
+            var make = function () {
+                $(this).css('overflow', 'hidden');
+
+                var thisWidth = $(this).width();
+                var mod = thisWidth % options.visible;
+                if (mod) {
+                    $(this).width(thisWidth - mod); // to prevent bugs while scrolling to the end of slider
+                }
+
+                var el = $(this).children('ul');
+                el.css({
+                    position: 'relative',
+                    left: '0'
+                });
+                var leftBtn = $(options.leftBtn), rightBtn = $(options.rightBtn);
+
+                var sliderFirst = el.children('li').slice(0, options.visible);
+                var tmp = '';
+                sliderFirst.each(function () {
+                    tmp = tmp + '<li>' + $(this).html() + '</li>';
+                });
+                sliderFirst = tmp;
+                var sliderLast = el.children('li').slice(-options.visible);
+                tmp = '';
+                sliderLast.each(function () {
+                    tmp = tmp + '<li>' + $(this).html() + '</li>';
+                });
+                sliderLast = tmp;
+
+                var elRealQuant = el.children('li').length;
+                el.append(sliderFirst);
+                el.prepend(sliderLast);
+                var elWidth = el.width() / options.visible;
+                el.children('li').css({
+                    float: 'left',
+                    width: elWidth
+                });
+                var elQuant = el.children('li').length;
+                el.width(elWidth * elQuant);
+                el.css('left', '-' + elWidth * options.visible + 'px');
+
+                function disableButtons() {
+                    leftBtn.addClass('inactive');
+                    rightBtn.addClass('inactive');
+                }
+                function enableButtons() {
+                    leftBtn.removeClass('inactive');
+                    rightBtn.removeClass('inactive');
+                }
+
+                leftBtn.click(function (event) {
+                    event.preventDefault();
+                    if (!$(this).hasClass('inactive')) {
+                        disableButtons();
+                        el.animate({ left: '+=' + elWidth + 'px' }, 300,
+                            function () {
+                                if ($(this).css('left') == '0px') { $(this).css('left', '-' + elWidth * elRealQuant + 'px'); }
+                                enableButtons();
+                            }
+                        );
+                    }
+                    return false;
+                });
+
+                rightBtn.click(function (event) {
+                    event.preventDefault();
+                    if (!$(this).hasClass('inactive')) {
+                        disableButtons();
+                        el.animate({ left: '-=' + elWidth + 'px' }, 1000,
+                            function () {
+                                if ($(this).css('left') == '-' + (elWidth * (options.visible + elRealQuant)) + 'px') { $(this).css('left', '-' + elWidth * options.visible + 'px'); }
+                                enableButtons();
+                            }
+                        );
+                    }
+                    return false;
+                });
+
+                if (options.autoPlay) {
+                    function aPlay() {
+                        var direction = (options.autoPlayDirection);
+                        if (direction === 'left-to-right')
+                            leftBtn.click();
+                        else if (direction === 'right-to-left')
+                            rightBtn.click();
+                        else
+                            leftBtn.click();
+                        delId = setTimeout(aPlay, options.autoPlayDelay * 1000);
+                    }
+                    var delId = setTimeout(aPlay, options.autoPlayDelay * 1000);
+                    el.hover(
+                        function () {
+                            clearTimeout(delId);
+                        },
+                        function () {
+                            delId = setTimeout(aPlay, options.autoPlayDelay * 1000);
+                        }
+                    );
+                }
+            };
+            return this.each(make);
+        };
+    })(jQuery);
+
+    // add this in body bottom part //
+
+    jQuery('.slider').lbSlider({
+        leftBtn: '.sa-left',
+        rightBtn: '.sa-right',
+        visible: 4,
+        autoPlay: true,
+        autoPlayDelay: 2,
+        autoMode: 'loop',
+        startOnLoad: true,
+    });
+</script>

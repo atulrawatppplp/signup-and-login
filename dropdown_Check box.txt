@@ -1,0 +1,127 @@
+===================================================================================================================
+===================================================================================================================
+css drop down check box
+===================================================
+ <head>
+        <style type="text/css">
+            form {
+               padding :10px;
+              }
+       .label-from-select {
+          display: block;
+          white-space: nowrap;
+          padding: 0.4em 0 0;
+            }
+        </style>
+      
+        <script type=" text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+     </head>
+
+
+=============================================================================================================================================
+html body
+======================================================================================================================================================
+    <form>
+        <select class="select-to-checkbox" name="select-me" size="6" multiple required>
+            <option value="">Select one...</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+            <option value="4">Four</option>
+            <option value="5">Five</option>
+            <option value="6">Six</option>
+        </select>
+
+        <br><br>
+
+        <select class="select-to-checkbox" name="select-you" size="6" multiple>
+            <option value="">Select another...</option>
+            <option value="a">Alpha</option>
+            <option value="b">Bravo</option>
+            <option value="c">Charlie</option>
+            <option value="d">Delta</option>
+            <option value="e">Echo</option>
+            <option value="f">Foxtrot</option>
+        </select>
+
+        <br><br>
+
+        <button>Submit - test required fields</button>
+    </form>
+
+
+===========================================================================================================================================================
+============================================================================================================================================
+java script drop down check box
+================================================================================================================================
+
+
+    <script type="text/javascript">
+        // when a selection is made, detach the selected option and create a checkbox and label
+        $('.select-to-checkbox').on('change', function (e) {
+            var $select = $(this);
+            $('option:selected', this).each(function (i, opt) { // multiple options might already be selected
+                var $option = $(opt),
+                    iname = $select.attr('name'),
+                    $label = $('<label class="label-from-select">'
+                               + '<input type="checkbox" class="checkbox-from-select" name="'
+                               + iname + '" value="'
+                               + $option.val() + '" checked>'
+                               + $option.text() + '</label>')
+                             .data('orig-option', $option); // store this so it can be replaced in the same spot
+                if ($option.val()) { // IE may select the first option automatically
+                    $option.detach();
+                    $select.nextUntil(':not(.label-from-select)').addBack().last().after($label); // add after existing checkboxes
+                    if ($select.prop('required')) { // disable "required" if an option has been converted
+                        $select.data('is-required', true).prop('required', false);
+                        $label.find('.checkbox-from-select').prop('required', true);
+                    };
+                };
+            });
+        });
+        $('.select-to-checkbox').on('click', 'option', function (e) {
+            $(this).closest('.select-to-checkbox').trigger('change');
+        })
+
+        // when the checkbox is unchecked, fade it out and add it back to the <select> as an option
+        $(document).on('change', '.checkbox-from-select', function (e) {
+            var $checkbox = $(this),
+                iname = $checkbox.attr('name'),
+                $label = $checkbox.closest('label'),
+                $option = $label.data('orig-option').prop('selected', false),
+                $select = $('.select-to-checkbox[name="' + iname + '"]');
+            setTimeout(function () { // a delay, in case the user made a mistake and checks the box again
+                if (!$checkbox.prop('checked')) {
+                    $label.fadeOut(800, function () {
+                        var $last = $('option', $select).filter(function (i, el) {
+                            return $(el).data('orig-index') < $option.data('orig-index');
+                        }).last();
+                        if ($last.length) {
+                            $last.after($option); // re-insert the option in its original place
+                        } else {
+                            $select.prepend($option);
+                        };
+                        if ($select.data('is-required') && $select.data('orig-count') == $('option', $select).length) {
+                            $select.prop('required', true);
+                        };
+                        $label.remove();
+                    });
+                };
+            }, 800);
+            if ($checkbox.prop('checked')) { // if the checkbox is re-checked before it fades out
+                $label.stop().fadeIn(1);
+            }
+        });
+
+        // on document load, store the "orig-index" of each option in the <select>
+        $('.select-to-checkbox').each(function (i, sel) {
+            var ocount = $('option', sel).each(function (j, opt) {
+                $(opt).data('orig-index', j);
+            }).length;
+            $(sel).data('orig-count', ocount) // store this in case of <select required>
+              .trigger('change').prop('multiple', false).attr('size', 1); // progressive enhancement
+        });
+
+
+    </script>
